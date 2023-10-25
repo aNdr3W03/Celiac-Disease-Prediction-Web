@@ -4,7 +4,8 @@ FROM python:3.10
 # Set our working directory as app
 WORKDIR /app
 # Installing Python packages through requirements.txt file
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
+RUN pip install flask gunicorn keras numpy scikit-learn tensorflow Werkzeug
 
 # Copy the model's directory and server.py files
 ADD ./model ./model
