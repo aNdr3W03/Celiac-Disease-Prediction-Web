@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block title %}Celiac Detection | About{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+  <h1 class="fw-bold mb-4">About</h1>
+
+  <p>This project is one of the studies that departed from <a href="https://usu.ac.id" title="University of Sumatera Utara" target="_blank" rel="noopener noreferrer" class="link-success fw-bold text-decoration-none">University of Sumatera Utara</a>'s undergraduate thesis research in computer science. This research focuses on the fields of machine learning, deep learning, and software engineering. Several points that are the advantages of this research are the <b>synthetic oversampling technique</b> which is applied to overcome unbalanced data labels or classes using <b>Artificial Neural Network (ANN) architecture</b> and its implementation in <b>web-based applications</b> and <b>Android-based applications</b> for the implementation of <b>on-device machine learning.</b></p>
+  
+  <p>The proposed research project is entitled, Implementation of a Celiac Disease Detection System using Deep Learning Methods and Synthetic Oversampling Techniques on the Web and Android-based Application. The team proposing this research project came from the <a href="https://fasilkom-ti.usu.ac.id" title="Faculty of Computer Science and Information Technology" target="_blank" rel="noopener noreferrer" class="link-success fw-bold text-decoration-none">Faculty of Computer Science and Information Technology</a>, University of Sumatera Utara, consisting of two lecturers as a research team leader and a research team member and also an undergraduate student as a research team assistant.</p>
+  
+  <!-- <p>This project is one of the research funded by the <a href="https://usu.ac.id" title="University of Sumatera Utara" target="_blank" rel="noopener noreferrer" class="link-success fw-bold text-decoration-none">University of Sumatera Utara</a>, under the Research Institute of the University of Sumatera Utara (Lembaga Penelitian/LP USU). This research is one of the research areas of TALENTA, namely, Tropical Science and Medicine. <b>TALENTA</b> itself is an abbreviation of,<br><b>T</b>ropical Science and Medicine;<br><b>A</b>groindustry;<br><b>L</b>ocal Wisdom;<br><b>E</b>nergy (sustainable);<br><b>N</b>atural Resources (biodiversity, forest, marine, mine, tourism);<br><b>T</b>echnology (appropriate) and;<br><b>A</b>rts (ethnic).<br>This TALENTA research is included in the Applied Research scheme year 2023 which targets Sustainable Development Goals (SDGs) 3, ensuring healthy lives and promote well-being for all at all ages.</p>
+  
+  <p>The proposed research project is entitled, A Multiplatform Approach for Celiac Disease Detection with Deep Learning and Synthetic Oversampling. The team proposing this research project came from the <a href="https://fasilkom-ti.usu.ac.id" title="Faculty of Computer Science and Information Technology" target="_blank" rel="noopener noreferrer" class="link-success fw-bold text-decoration-none">Faculty of Computer Science and Information Technology</a>, University of Sumatera Utara, consisting of two lecturers as a research team leader and a research team member and also an undergraduate student as a research team assistant.</p> -->
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{url_for('static', filename='img/bu_amel.jpg')}}" type="image/jpg" class="card-img-top" alt="Bu Amel">
+      <div class="card-header">Research Leader</div>
+      <div class="card-body">
+        <h5 class="card-title">Dr. Amalia, S.T., M.T.</h5>
+        <p class="card-text mb-0">NIDN. 0121127801</p>
+        <p class="card-text">SINTA ID: <a href="https://sinta.kemdikbud.go.id/authors/profile/5989140" title="Amalia | SINTA - Science and Technology Index" target="_blank" rel="noopener noreferrer" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">5989140</a></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Head of Undergraduate Program in Computer Science</small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{url_for('static', filename='img/bu_vani.jpg')}}" type="image/jpg" class="card-img-top" alt="Bu Vani">
+      <div class="card-header">Research Member</div>
+      <div class="card-body">
+        <h5 class="card-title">Sri Melvani Hardi, S.Kom., M.Kom.</h5>
+        <p class="card-text mb-0">NIDN. 0101058801</p>
+        <p class="card-text">SINTA ID: <a href="https://sinta.kemdikbud.go.id/authors/profile/5993964" title="Sri Melvani Hardi | SINTA - Science and Technology Index" target="_blank" rel="noopener noreferrer" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">5993964</a></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Secretary of Undergraduate Program in Computer Science</small>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col">
+    <div class="card h-100">
+      <img src="{{url_for('static', filename='img/bu_maya.jpg')}}" type="image/jpg" class="card-img-top" alt="Bu Maya">
+      <div class="card-header">Research Member</div>
+      <div class="card-body">
+        <h5 class="card-title">Dr. Maya Silvi Lydia, B.Sc., M.Sc.</h5>
+        <p class="card-text mb-0">NIDN. 0027017403</p>
+        <p class="card-text">SINTA ID: <a href="https://sinta.kemdikbud.go.id/authors/profile/6013047" title="Maya Silvi Lydia | SINTA - Science and Technology Index" target="_blank" rel="noopener noreferrer" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">6013047</a></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Dean of Faculty of Computer Science and Information Technology</small>
+      </div>
+    </div>
+  </div> -->
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{url_for('static', filename='img/andrew.jpg')}}" type="image/jpg" class="card-img-top" alt="Andrew">
+      <div class="card-header">Research Assistant</div>
+      <div class="card-body">
+        <h5 class="card-title">Andrew Benedictus Jamesie</h5>
+        <p class="card-text mb-0">NIM. 201401035</p>
+        <p class="card-text"><a href="https://linkedin.com/in/andrewbjamesie" title="Andrew Benedictus Jamesie | LinkedIn" target="_blank" rel="noopener noreferrer" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">LinkedIn</a></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Undergraduate Computer Science Student</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-img-logo">
+  <div class="col-img-logo">
+    <img src="{{url_for('static', filename='img/logo_usu.png')}}" type="image/png" class="img-logo" alt="Logo USU">
+  </div>
+  <div class="col-img-logo">
+    <img src="{{url_for('static', filename='img/logo_fasilkom-ti.png')}}" type="image/png" class="img-logo" alt="Logo Fasilkom-TI USU">
+  </div>
+  <div class="col-img-logo">
+    <img src="{{url_for('static', filename='img/logo_kui.png')}}" type="image/png" class="img-logo" alt="Logo Collaboration for Innovation">
+  </div>
+  <div class="col-img-logo">
+    <img src="{{url_for('static', filename='img/logo_ttu.png')}}" type="image/png" class="img-logo" alt="Logo Transformation Towards the Ultimate">
+  </div>
+</div>
+{% endblock %}

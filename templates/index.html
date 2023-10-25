@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block title %}Celiac Detection | Home{% endblock %}
+
+{% block content %}
+<h1 class="fw-bold mb-5">Celiac Disease Detection</h1>
+
+<h3 class="fw-bold mt-5 mb-3">Do you know celiac?</h3>
+<div class="row">
+  <div class="col-md-5">
+    <figure class="figure">
+      <img src="{{url_for('static', filename='img/celiac_disease.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Normal vs Celiac Disease Intestine">
+      <figcaption class="figure-caption text-center">Normal vs Celiac Disease Intestine</figcaption>
+    </figure>
+  </div>
+
+<!-- https://celiac.org/about-celiac-disease/what-is-celiac-disease -->
+<!-- Villi: small fingerlike projections that line the small intestine, that promote nutrient absorption -->
+
+  <div class="col-xl-7 mb-sm-0">
+    <p>Coeliac disease, or celiac disease, is an autoimmune disorder that occurs when the immune system reacts abnormally and mistakenly attacks the body's digestive system, making it more vulnerable to digestive issues and severe complications. This abnormal reaction is triggered when the immune system wrongly identifies gluten's protein component (gliadin) as a harmful substance. If untreated, this condition can cause damage to the villi of the intestinal lining, disrupting the absorption of vital nutrients (malabsorption). Villi is a small fingerlike projections that line the small intestine, that promote nutrient absorption.</p>
+    <p>Until now, the exact cause of celiac disease remains unknown, but factors like genetics, immune system, and environmental elements are thought to be the cause. When the immune system treats gluten as a threat, it produces antibodies, leading to intestinal inflammation and digestive disruptions.</p>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-xl-7 mb-sm-0">
+    <h3 class="fw-bold mb-3">What is gluten?</h3>
+    <p>Gluten is a family of proteins commonly present in certain <span class="fw-bold">grains</span> like <span class="fw-bold">wheat</span>, <span class="fw-bold">barley</span>, <span class="fw-bold">spelt</span>, <span class="fw-bold">kamut</span>, and <span class="fw-bold">rye</span>. It plays a key role in the elasticity of dough, helping it rise and maintain its shape during the baking process. Gluten is composed of two main proteins, gliadin and glutenin.</p>
+    <p>When wheat flour is mixed with water, gluten forms a network of proteins that gives bread its characteristic texture, chewiness, and structure. This network traps carbon dioxide gas produced by yeast or chemical leavening agents (like baking powder or baking soda), causing the dough to rise and become light and fluffy.</p>
+    <p>For individuals with celiac disease, consuming gluten-containing foods leads to an abnormal immune response, attacking healthy tissue in the small intestine. As a result, they experience symptoms such as diarrhea, abdominal pain, nausea, vomiting, bloating, constipation, fatigue, weight loss, and pale, fatty, runny, and smelly stools.</p>
+  </div>
+
+  <div class="col-md-5">
+    <figure class="figure">
+      <img src="{{url_for('static', filename='img/gluten.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Anatomy of a Wheat Grain">
+      <figcaption class="figure-caption text-center">Anatomy of a Wheat Grain</figcaption>
+    </figure>
+  </div>
+</div>
+
+<h3 class="fw-bold mt-5 mb-3">Type of celiac?</h3>
+<div class="row">
+  <div class="col-md-5">
+    <figure class="figure">
+      <img src="{{url_for('static', filename='img/celiac_iceberg.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Celiac Disease Iceberg">
+      <figcaption class="figure-caption text-center">Celiac Disease "Iceberg"</figcaption>
+    </figure>
+  </div>
+
+  <!-- https://celiac.org/about-celiac-disease/symptoms-of-celiac-disease -->
+
+  <div class="col-xl-7 mb-sm-0">
+    <p>According to the <span class="fw-bold">World Gastroenterology Organization</span>, celiac disease can be categorized into classical and non-classical forms.</p>
+    <p>In <span class="fw-bold">classical celiac disease</span>, a.k.a. <span class="fw-bold">typical celiac disease</span>, patients show symptoms of malabsorption, such as diarrhea, pale and foul-smelling fatty stools, and weight loss or stunted growth in children.</p>
+    <p>In <span class="fw-bold">non-classical celiac disease</span>, a.k.a. <span class="fw-bold">atypical celiac disease</span>, patients may experience mild gastrointestinal issues without clear malabsorption signs, or they might have seemingly unrelated symptoms. These could include abdominal bloating and pain, anemia, fatigue, migraines, tingling or numbness in hands or feet, osteoporosis, deficiencies in vitamins, weight loss, delayed or early onset of menstruation, infertility, depression, anxiety, and dermatitis herpetiformis.</p>
+    <p><span class="fw-bold">Silent celiac disease</span> is also referred to as asymptomatic celiac disease, is a condition where the patients do not experience any clinical symptoms, but they experience villous atrophic damage in their small intestine. Research indicates that these seemingly symptom-free patients, adhering to a strict gluten-free diet has led to improvements in their overall well-being and a decrease in abdominal bloating, distention, and flatulence.</p>
+  </div>
+  
+  <p><span class="fw-bold">Latent celiac disease</span> indicates the patient has no symptoms of celiac disease at all currently, but has genetic risk factors and is likely to develop celiac disease later in life.</p>
+  <p><span class="fw-bold">Potential celiac disease</span> refers to someone who has genetic risk factors and questionable initial test results, but does not show small intestine damage or symptoms of celiac disease. Patients with this type of potential celiac disease should remain under supervision because they are at high risk of developing celiac disease in the future.</p>
+</div>
+
+<!-- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3395124 -->
+<!-- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5934602 -->
+
+<!-- https://celiac.org/about-celiac-disease/what-is-celiac-disease -->
+
+<h3 class="fw-bold mb-4 mt-5">Do you have celiac disease?</h3>
+<div class="d-grid justify-content-md-start">
+  <a href="/predict" class="btn btn-outline-success btn-lg">Try detect now!</a>
+</div>
+{% endblock %}

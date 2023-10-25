@@ -1,0 +1,448 @@
+{% extends 'layout.html' %}
+
+{% block title %}Celiac Detection | Detect{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+	<h1 class="fw-bold text-center mb-4">Detect now whether you have Celiac Disease or not 👨🏻‍⚕️🩺</h1>
+	<p class="mb-4">You need to input your data such as, Age, Gender, Diabetes Type, Diarrhea Type, Dwarfism Type, Abdominal, Sticky Stool, Weight Loss, IgA, IgG, and IgM, as well as Marsh Type. If you are confused when input the data, please see the reference explanation for each data in the <a href="#input-desc" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Input Description</a> below.</p>
+</div>
+
+<form action="/result" method="POST" class="mb-5">
+	<div class="row g-4">
+		<div class="col-sm">
+			<div class="form-floating">
+				<input type="number" step="1" min="1" max="35" maxlength="2" placeholder="0" name="age" id="age" class="form-control" required onkeypress="return isNumberKey(this)">
+				<label for="age">Age</label>
+			</div>
+		</div>
+
+		<div class="col-sm">
+			<label class="label-block" for="gender">Gender</label>
+			
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+				<label class="form-check-label" for="male">Male</label>
+			</div>
+			
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="gender" id="female" value="female">
+				<label class="form-check-label" for="female">Female</label>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row g-4 mt-0">
+		<div class="col-sm">
+			<div class="form-check form-switch mt-4">
+				<input type="checkbox" role="switch" value="1" name="diabetes" id="diabetes" class="form-check-input">
+				<label for="diabetes" class="form-check-label">Diabetes</label>
+			</div>
+		</div>
+
+		<div class="col-sm">
+			<div class="form-floating mb-4">
+				<select name="dia_type" id="dia_type" class="form-select" required>
+					<option value="" selected disabled hidden>Choose...</option>
+					<option value="none">None</option>
+					<option value="type 1">Type 1</option>
+					<option value="type 2">Type 2</option>
+				</select>
+				<label for="dia_type">Diabetes Type</label>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row g-4">
+		<div class="col-sm">
+			<div class="form-floating">
+				<select name="diarrhoea" id="diarrhoea" class="form-select" required>
+					<option value="" selected disabled hidden>Choose...</option>
+					<option value="fatty">Fatty</option>
+					<option value="watery">Watery</option>
+					<option value="inflammatory">Inflammatory</option>
+				</select>
+				<label for="diarrhoea">Diarrhoea</label>
+			</div>
+		</div>
+
+		<div class="col-sm">
+			<div class="form-floating mb-4">
+				<select name="short_stature" id="short_stature" class="form-select" required>
+					<option value="" selected disabled hidden>Choose...</option>
+					<option value="variant">Variant</option>
+					<option value="pss">PSS (Proportionate Short Stature)</option>
+					<option value="dss">DSS (Disproportionate Short Stature)</option>
+				</select>
+				<label for="short_stature">Short Stature</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="row g-4">
+		<div class="col-sm">
+			<div class="form-check form-switch mb-4">
+				<input type="checkbox" role="switch" value="1" name="abdominal" id="abdominal" class="form-check-input">
+				<label for="abdominal" class="form-check-label">Abdominal</label>
+			</div>
+		</div>
+
+		<div class="col-sm">
+			<div class="form-check form-switch mb-4">
+				<input type="checkbox" role="switch" value="1" name="sticky_stool" id="sticky_stool" class="form-check-input">
+				<label for="sticky_stool" class="form-check-label">Sticky Stool</label>
+			</div>
+		</div>
+
+		<div class="col-sm">
+			<div class="form-check form-switch mb-4">
+				<input type="checkbox" role="switch" value="1" name="weight_loss" id="weight_loss" class="form-check-input">
+				<label for="weight_loss" class="form-check-label">Weight Loss</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="row g-4">
+		<div class="col-sm">
+			<div class="input-group">
+				<div class="form-floating">
+					<input type="number" step="0.01" min="0" placeholder="00.00" name="iga" id="iga" class="form-control" required onkeypress="return isDecimalKey(event)">
+					<label for="iga">IgA</label>
+				</div>
+				<span class="input-group-text">U/ml</span>
+			</div>
+		</div>
+		
+		<div class="col-sm">
+			<div class="input-group">
+				<div class="form-floating">
+					<input type="number" step="0.01" min="0" placeholder="00.00" name="igg" id="igg" class="form-control" required onkeypress="return isDecimalKey(event)">
+					<label for="igg">IgG</label>
+				</div>
+				<span class="input-group-text">U/ml</span>
+			</div>
+		</div>
+		
+		<div class="col-sm">
+			<div class="input-group mb-4">
+				<div class="form-floating">
+					<input type="number" step="0.01" min="0" placeholder="00.00" name="igm" id="igm" class="form-control" required onkeypress="return isDecimalKey(event)">
+					<label for="igm">IgM</label>
+				</div>
+				<span class="input-group-text">U/ml</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row g-4">
+		<div class="col-sm-6">
+			<div class="form-floating mb-4">
+				<select name="marsh_type" id="marsh_type" class="form-select" required>
+					<option value="" selected disabled hidden>Choose...</option>
+					<option value="none">None</option>
+					<option value="marsh type 0">Marsh Type 0</option>
+					<option value="marsh type 1">Marsh Type 1</option>
+					<option value="marsh type 2">Marsh Type 2</option>
+					<option value="marsh type 3a">Marsh Type 3a</option>
+					<option value="marsh type 3b">Marsh Type 3b</option>
+					<option value="marsh type 3c">Marsh Type 3c</option>
+				</select>
+				<label for="marsh_type">Marsh Type</label>
+			</div>
+		</div>
+
+		<div class="col-sm">
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-end mt-1  mb-4">
+				<button type="reset" class="btn btn-danger btn-lg me-sm-2">Reset</button>
+				<button type="submit" class="btn btn-success btn-lg">Submit</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+<div id="input-desc">
+	<h3 class="fw-bold mb-4">Inputs Description</h3>
+
+	<div class="accordion" id="accordionDesc">
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					1. Age
+				</button>
+			</h2>
+			<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Patient's age (in year)</span>. The input value must be in <span class="fw-bold">positive integer</span>. Age is an important factor in detecting the risk of celiac disease, because this disease often appears in childhood, but it also does not rule out the possibility that it can occur in adulthood.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					2. Gender
+				</button>
+			</h2>
+			<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Patient's gender</span>. Input is a <span class="fw-bold">male or female</span> choice option. Several studies show that celiac disease is more common in women than men.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					3. Diabetes
+				</button>
+			</h2>
+			<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Does the patient have diabetes?</span> Please click the button and turn it on if the patient has diabetes and turn it off if not. The presence of diabetes may increase the risk of developing celiac disease.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					4. Diabetes Type
+				</button>
+			</h2>
+			<div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p><span class="fw-bold">Patient's type of diabetes</span>. Input in the form of several options of the diabetes type experienced by the patient. If the patient previously had diabetes, please select the type of diabetes suffered, whether <span class="fw-bold">Type 1</span>, <span class="fw-bold">Type 2</span>, or <span class="fw-bold">None</span>. Some studies show a link between certain types of diabetes and celiac disease.</p>
+
+					<ol class="list-group list-group-numbered">
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">None</div>
+								The patient does not suffer from diabetes. The body can normally regulate blood glucose levels within a healthy range without problems. This is a desirable condition and indicates that there is no disturbance in blood sugar metabolism.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Diabetes Type 1</div>
+								Type 1 diabetes is a chronic condition in which the body's immune system attacks and eliminates the cells responsible for producing insulin. This results in elevated levels of glucose (sugar) in the bloodstream, as insulin is crucial for regulating blood sugar. Managing Type 1 diabetes necessitates daily insulin injections to maintain proper glucose levels. Unlike Type 2 diabetes, Type 1 diabetes is unrelated to age or obesity; these factors are associated with Type 2 diabetes instead.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Diabetes Type 2</div>
+								Type 2 diabetes occurs when the body either doesn't produce enough insulin or the body's cells do not respond effectively to insulin. This common condition leads to high blood sugar levels, causing symptoms such as excessive thirst, frequent urination, and fatigue. Additionally, Type 2 diabetes can elevate the risk of severe complications related to the eyes, heart, and nerves. It is a lifelong condition that significantly impacts daily life, often requiring dietary changes, medications, and regular medical check-ups. The root cause of Type 2 diabetes lies in problems with the hormone insulin, and it is frequently connected to factors such as being overweight, lack of physical activity, or having a family history of the disease.
+							</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+					5. Diarrhoea
+				</button>
+			</h2>
+			<div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p><span class="fw-bold">Patient's diarrhea type</span>. Input in the form of several options of the diarrhoea type experienced by the patient. Please select the type of diarrhoea experienced by the patient, whether <span class="fw-bold">Fatty</span>, <span class="fw-bold">Watery</span>, or <span class="fw-bold">Inflammatory</span> diarrhoea. Celiac disease can cause chronic diarrhoea symptoms in some cases.</p>
+
+					<ol class="list-group list-group-numbered">
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Fatty</div>
+								Fatty diarrhea occurs when the stool contains an abnormally high amount of fat so that it appears oily, pale, and possibly foamy. The two main causes of fatty diarrhea are impaired fat digestion due to low levels of pancreatic enzymes and fat malabsorption due to small intestine diseases such as celiac disease.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Watery</div>
+								Watery diarrhea is the most common type of diarrhea and is characterized by very liquid stools, without significant solid impurities. This usually occurs when excessive fluid enters the intestines or when the intestines cannot absorb fluids properly or malabsorption of carbohydrates such as lactose, sorbitol, and fructose intolerance. Watery diarrhea can cause dehydration if not treated quickly.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Inflammatory</div>
+								Inflammatory diarrhea involves inflammation in the intestines, which causes stools to contain blood, mucus, or pus. This diarrhea is often accompanied by abdominal pain, bloating, and other systemic symptoms. Inflammation can occur in various parts of the intestine.
+							</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+					6. Short Stature
+				</button>
+			</h2>
+			<div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p><span class="fw-bold">Related to the patient's type of dwarfism</span>. Input in the form of several options to select the patient's short stature type. Please select the patient's short stature type, whether <span class="fw-bold">Variant</span>, <span class="fw-bold">PSS (Proportionate Short Stature)</span>, or <span class="fw-bold">DSS (Disproportionate Short Stature)</span>. Celiac disease in the childhood can stunt their growth.</p>
+
+					<ol class="list-group list-group-numbered">
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Variant</div>
+								When the patient's short height is caused by genetic or genetic factors that are not known for certain.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">PSS (Proportionate Short Stature)</div>
+								When the patient's short height is caused by stunted proportional growth, meaning that all parts of the body have equal proportions, but the height is short.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">DSS (Disproportionate Short Stature)</div>
+								When the patient's short height is caused by unequal growth in body parts, such as arms or legs that are shorter than their proper proportions.
+							</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+					7. Abdominal
+				</button>
+			</h2>
+			<div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Does the patient experience symptoms of abdominal bloating or pain?</span> Please click the button and turn it on if the patient has abdominal pain and turn it off if not. Symptoms of abdominal pain are also often associated with celiac disease.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+					8. Sticky Stool
+				</button>
+			</h2>
+			<div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Whether the patient has sticky stools?</span> Please click the button and turn it on if the patient has sticky stool and turn it off if not. Sticky stool is a term used to describe stool that appears sticky. This can indicate problems with digestion or absorption of nutrients in the body, and is often associated with celiac disease. Normal stool should have a soft consistency and be easy to pass without being sticky.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+					9. Weight Loss
+				</button>
+			</h2>
+			<div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Has the patient experienced significant weight loss?</span> Please click the button and turn it on if the patient experiences sudden weight loss and turn it off if not. Celiac disease is often associated with unexplained weight loss due to its association with problems with digestion and nutrient absorption.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+					10. IgA
+				</button>
+			</h2>
+			<div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Immunoglobulin A (IgA) antibodies</span> is the most common type of antibody <span class="fw-bold">found in the respiratory, digestive, and eyes to protect the body surface from attack by pathogens</span> such as bacteria and viruses, helps prevent pathogens from attaching to mucous membranes in the body, such as in the digestive and respiratory, thereby preventing infection. The input value must be in <span class="fw-bold">positive decimal number</span> in units of <span class="fw-bold">U/ml (Units per milliliter)</span>. Immunoglobulin testing can be helpful in the diagnosis of celiac disease, as people with this disease often have altered immunoglobulin levels.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+					11. IgG
+				</button>
+			</h2>
+			<div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Immunoglobulin G (IgG) antibodies</span> is the <span class="fw-bold">most abundant type of antibody in blood and other body tissues</span> as a major component of the humoral immune response to fight pathogens in body fluids and <span class="fw-bold">provide long-term immunity against disease, 'remembering attacks/infections'</span>. The input value must be in <span class="fw-bold">positive decimal number</span> in units of <span class="fw-bold">U/ml (Units per milliliter)</span>. Immunoglobulin testing can be helpful in the diagnosis of celiac disease, as people with this disease often have altered immunoglobulin levels.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+					12. IgM
+				</button>
+			</h2>
+			<div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p class="mb-0"><span class="fw-bold">Immunoglobulin M (IgM) antibodies</span> is the <span class="fw-bold">first type of antibody produced by the body as an immune response to a new pathogen or infection</span>, providing rapid protection against the initial attack of infection. The input value must be in <span class="fw-bold">positive decimal number</span> in units of <span class="fw-bold">U/ml (Units per milliliter)</span>. Immunoglobulin testing can be helpful in the diagnosis of celiac disease, as people with this disease often have altered immunoglobulin levels.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+					13. Marsh Type
+				</button>
+			</h2>
+			<div id="collapseThirteen" class="accordion-collapse collapse" data-bs-parent="#accordionDesc">
+				<div class="accordion-body">
+					<p><span class="fw-bold">Level of damage in the small intestine</span> based on histological changes. Input in the form of several options to select the patient's marsh type, whether <span class="fw-bold">Marsh Type 0</span>, <span class="fw-bold">1</span>, <span class="fw-bold">2</span>, <span class="fw-bold">3A</span>, <span class="fw-bold">3B</span>, <span class="fw-bold">3C</span>, or <span class="fw-bold">None</span>. This is one of the most important information for a more accurate celiac detection or diagnosis.</p>
+
+					<!-- https://www.verywellhealth.com/marsh-stage-of-celiac-disease-562711 -->
+					<!-- https://celiac.org/about-celiac-disease/screening-and-diagnosis/diagnosis -->
+
+					<ol class="list-group list-group-numbered">
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">None</div>
+								No pathological or histological changes were seen in the lining of the small intestine. This indicates that there is no visible damage and the intestines are in normal condition.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Marsh Type 0</div>
+								Small intestine lining is normal with healthy, normal-looking villi, so it is unlikely that the person has celiac disease. Marsh Stage 0 is also often referred to as the "pre-infiltrative stage" because the lymphocytes white blood cells have not yet started move into, or "infiltrate", the intestinal lining.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Marsh Type 1</div>
+								Marsh Type 1 occurs when cells on the surface of the small intestine lining, known as the epithelial cells, have more lymphocytes than usual, indicating inflammation and the potential for damage. Generally, a normal small intestine has no more than 30 lymphocytes per 100 epithelial cells, but in Marsh Stage 1, the lymphocytes is more than that, and the result of the pathology report is most likely "increased intraepithelial lymphocytes".
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Marsh Type 2</div>
+								An increase in lymphocytes and larger depressions, known as "crypts," can be observed between the intestinal villi. If the pathology report mentions "hyperplastic crypts" or "crypt hyperplasia," it indicates that these depressions in the biopsy are larger than the typical normal intestinal lining.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Marsh Type 3a (Partial Villous Atrophy)</div>
+								Many healthcare professionals refrain from diagnosing celiac disease until the Marsh reach the stage 3 of intestinal lining damage. At this point, Marsh Stage 3a, the changes seen in stage 2, such as higher lymphocyte counts and larger depressions, persist. The intestinal villi are still present but reduced in size, shrinking and flattening of intestinal villi, a condition referred to as villous atrophy.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Marsh Type 3b (Subtotal Villous Atrophy)</div>
+								In Marsh Stage 3b, there is significant shrinkage or shortening of the intestinal villi.
+							</div>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-start">
+							<div class="ms-2 me-auto">
+								<div class="fw-bold">Marsh Type 3c (Total Villous Atrophy)</div>
+								In Marsh Stage 3c, the intestinal lining is essentially flat, no more intestinal villi remain, indicating complete villous atrophy.
+							</div>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

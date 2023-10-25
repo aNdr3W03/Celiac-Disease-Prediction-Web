@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Content Block Margin and Padding */
+.content-block {
+  margin: 90px auto 24px;
+  padding: 1.5rem 1rem;
+}
+
+/* Hidden Number Input Arrow on Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hidden Number Input Arrow on Firefox */
+input[type=number]{
+  -moz-appearance: textfield;
+}
+
+/* Show the Form Floating Placeholder */
+.form-floating > .form-control::placeholder {
+  color: gray;
+}
+
+/* Hide the Form Floating Placeholder when not focus */
+.form-floating > .form-control:not(:focus)::placeholder {
+  color: transparent;
+}
+
+/* Style for block Label and inline Radio Button */
+.label-block {
+  display: block;
+}
+
+.form-check-inline {
+  margin-right: 2rem;
+}
+
+
+
+/* Style for form select, form control, and form check input */
+.form-select:focus {
+  border-color: rgb(210, 230, 220);
+  box-shadow: 0 0 0 0.25rem rgba(160, 210, 175, 0.5);
+}
+
+.form-control:focus {
+  border-color: rgb(210, 230, 220);
+  box-shadow: 0 0 0 0.25rem rgba(160, 210, 175, 0.5);
+}
+
+.form-check-input:focus {
+  border-color: rgb(210, 230, 220);
+  box-shadow: 0 0 0 0.25rem rgba(160, 210, 175, 0.5);
+}
+
+.form-check-input:checked {
+  background-color: #198754;
+  border-color: rgb(210, 230, 220);
+}
+
+.form-switch .form-check-input:focus {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23a3d9a5'/%3e%3c/svg%3e");
+}
+
+
+
+/* Scrolling margin for Input Description in Predict page */
+#input-desc {
+  scroll-margin-top: 7rem;
+}
+
+/* Accordion Active Background and Focus Box Shadow color */
+.accordion {
+  --bs-accordion-active-bg: rgb(210, 230, 220);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(160, 210, 175, 0.5);
+}
+
+/* Img Logo About page */
+.row-img-logo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+.col-img-logo {
+  flex: 25%;
+  max-width: 25%;
+  padding: 32px 0 24px;
+}
+
+.col-img-logo img {
+  width: 80%;
+}
+
+@media screen and (max-width: 992px) {
+  .col-img-logo {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .col-img-logo {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .col-img-logo img {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .col-img-logo img {
+    max-width: 80%;
+  }
+}

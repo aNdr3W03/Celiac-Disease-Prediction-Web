@@ -1,0 +1,404 @@
+{% extends 'layout.html' %}
+
+{% block title %}Celiac Detection | Result{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+	<h1 class="fw-bold mb-4">Detection Result</h1>
+	<p class="">Your result is:</p>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+
+<!-- https://getbootstrap.com/docs/5.3/components/modal/ -->
+<!-- https://getbootstrap.com/docs/5.3/content/figures/ -->
+
+<!-- deskripsi, makanan pantangan, kalo bisa ada gambar -->
+
+{% if result == 'None' %}
+<div>
+	<div class="alert alert-success">
+		<div class="d-flex align-items-center" role="alert">
+			<svg width="26" height="26" fill="currentColor" class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+			<h3 class="alert-heading fw-bold mb-0">Not Celiac</h3>
+		</div>
+		<hr>
+		<p class="mb-0">Hurray! Congratulations, you have not been detected with celiac disease 🤩</p>
+	</div>
+	
+	<div class="row">
+		<div class="col-xl-8 mb-3 mb-sm-0">
+			<div class="alert alert-success" role="alert">
+				<p>The "Celiac None" type refers to patients who do not have celiac disease. This means you don't have an autoimmune reaction to gluten, a protein found in grains, wheat, barley, spelt, kamut, and rye. You can consume foods containing gluten without experiencing celiac symptoms or damage to the intestines.</p>
+				<p>People with the "Celiac None" type do not have a genetic predisposition or other risk factors that trigger an autoimmune response to gluten. Their immune system does not respond to gluten as a threat and does not cause damage to the lining of the small intestine.</p>
+				<hr>
+				<p>It's important to remember that even if you don't have celiac disease, <span class="fw-bold">you may still have gluten intolerance or an allergy to gluten leading to other autoimmune diseases</span>. Gluten intolerance is a condition in which a person experiences digestive symptoms after consuming gluten, even though there is no permanent damage to the intestines. An allergy to gluten is an allergic reaction involving the body's immune system to the gluten protein.</p>
+				<p class="mb-0">If you believe that you may have gluten intolerance or an allergy to gluten, it is important to consult a doctor or nutritionist for proper evaluation and diagnosis. An accurate diagnosis from a doctor is the first step to managing health conditions associated with gluten consumption.</p>
+			</div>
+		</div>
+	
+		<div class="col-md-4 mb-3 mx-md-auto">
+			<figure class="figure">
+				<img src="{{url_for('static', filename='img/healthy.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Not Celiac, Healthy Intestines">
+				<figcaption class="figure-caption text-center">No Celiac, Healthy Intestines</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+{% endif %}
+	
+
+
+
+
+{% if result == 'Typical' %}
+<div>
+	<div class="alert alert-warning">
+		<div class="d-flex align-items-center" role="alert">
+			<svg width="26" height="26" fill="currentColor" class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+			<h3 class="alert-heading fw-bold mb-0">Typical Celiac</h3>
+		</div>
+		<hr>
+		<p class="mb-0">Oops! you have been detected with celiac disease with the typical type 😥</p>
+	</div>
+	
+	<!-- - Typical merujuk pada tipe celiac yang paling umum, gejala yang khas seperti diare, penurunan berat badan, kelelahan, kembung. Terjadi kerusakan usus halus. -->
+	
+	<div class="row">
+		<div class="col-xl-8 mb-3 mb-sm-0">
+			<div class="alert alert-warning" role="alert">
+				<p>Typical Celiac or "Classic Celiac Disease" refers to a form of celiac disease in which patients <span class="fw-bold">experience typical symptoms associated with problems with digestion and nutrient absorption</span>. These symptoms appear in response to consuming gluten, a protein found in <span class="fw-bold">grains</span>, <span class="fw-bold">wheat</span>, <span class="fw-bold">barley</span>, <span class="fw-bold">spelt</span>, <span class="fw-bold">kamut</span>, and <span class="fw-bold">rye</span>. The following are some symptoms that may occur to you as a "Typical Celiac" patient,</p>
+				
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Digestive Symptoms</div>
+							Patients with this typical celiac type often experience digestive problems such as diarrhea, nausea, constipation, bloating and abdominal pain. These symptoms occur because gluten damages the lining of the small intestine, which reduces the body's ability to absorb nutrients properly.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Nutritional Deficiencies</div>
+							Because damage to the small intestine, especially the villi which are responsible for absorbing nutrients, actually inhibits the absorption of nutrients, patient with this type can experience nutritional deficiencies, including deficiencies of iron, calcium, vitamin D, and vitamin B12.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Weight Loss</div>
+							Due to damage in the small intestine, the body cannot absorb nutrients efficiently, patient with Typical Celiac disease tend to experience unwanted weight loss.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Fatigue</div>
+							Patient with the Typical Celiac disease often feel very tired and chronically fatigued, which is caused by nutritional deficiencies and poor absorption as a result of damage to the villi in the small intestine.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">External Symptoms</div>
+							Some people with this type may also experience skin symptoms, such as a rash (dermatitis herpetiformis), which is a typical sign of celiac disease. This rash can be very itchy and affect certain areas of the skin.
+						</div>
+					</li>
+				</ol>
+				<hr>
+	
+				<!-- https://www.southtees.nhs.uk/services/pathology/tests/anti-endomysial-antibody-ema -->
+	
+				<p>Diagnosis of Typical Celiac disease usually involves a series of blood tests that you may have done to detect celiac disease-specific antibodies, such as anti-tTG IgA (anti-tissue Transglutaminase Immunoglobulin A) and anti-EMA IgA (anti-Endomysial Antibodies Immunoglobulin A). If the blood test results are suspicious, a small intestine biopsy is usually performed to confirm the diagnosis.</p>
+				<p class="mb-0">It is important to note that management of classic type celiac disease involves a <span class="fw-bold">lifelong gluten-free diet</span>. By avoiding gluten completely, symptoms can be managed and damage to the small intestine can be stopped. Foods containing <span class="fw-bold">grains</span>, <span class="fw-bold">wheat</span>, <span class="fw-bold">barley</span>, <span class="fw-bold">spelt</span>, <span class="fw-bold">kamut</span>, and <span class="fw-bold">rye</span> <span class="fw-bold">should be avoided completely</span>, and you often need the help of a nutritionist to ensure they are getting adequate nutrition from a gluten-free diet.</p>
+			</div>
+		</div>
+	
+		<div class="col-md-4 mb-3 mx-md-auto">
+			<figure class="figure">
+				<img src="{{url_for('static', filename='img/typical.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Typical Celiac Symptoms">
+				<figcaption class="figure-caption text-center">Typical Celiac Symptoms</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+
+
+
+{% if result == 'Atypical' %}
+<div>
+	<div class="alert alert-warning">
+		<div class="d-flex align-items-center" role="alert">
+			<svg width="26" height="26" fill="currentColor" class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+			<h3 class="alert-heading fw-bold mb-0">Atypical Celiac</h3>
+		</div>
+		<hr>
+		<p class="mb-0">Oops! you have been detected with celiac disease with the atypical type 😥</p>
+	</div>
+	
+	<!-- - Atypical merujuk pada tipe celiac dengan gejala yang tidak biasa sehingga sulit mendiagnosis celiac, misalnya gangguan pencernaan ringan, anemia, osteoporosis, masalah kulit seperti dermatitis, herpetiformis, gangguan neurologis seperti ataksi (ketidakmampuan mengendalikan gerakan tubuh). -->
+	
+	<div class="row">
+		<div class="col-xl-8 mb-3 mb-sm-0">
+			<div class="alert alert-warning" role="alert">
+				<p>Atypical Celiac Disease is a form of celiac disease that <span class="fw-bold">does not showing the typical celiac symptoms associated with digestion problems or nutrient absorption</span>. On the other hand, you may actually experience various symptoms that are not directly related to digestive problems such as,</p>
+				
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Non-Gastrointestinal Symptoms</div>
+							People with atypical types of celiac disease may experience symptoms beyond digestive problems, such as chronic fatigue, joint pain, anemia, osteoporosis, dermatitis herpetiformis, depression, anxiety, tingling or numbness in the hands and feet, migraines, and fertility problems. These symptoms can make diagnosis more difficult because they are not directly related to celiac disease.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Joint Pain</div>
+							Some patients with atypical celiac types may experience chronic joint pain caused by an autoimmune reaction to gluten. This can result in inflammation of the joints and tissue damage.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Neuropsychiatric Disorders</div>
+							Neuropsychiatric symptoms such as anxiety, depression, and impaired concentration may also occur in patient with atypical types of celiac disease. Gluten can affect the nervous system, causing these symptoms.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Changes in Mood and Behavior</div>
+							Some people with atypical types of celiac disease may experience changes in mood and behavior, including irritability, mood swings, and impulsive behavior. This may be related to gluten's effect on the nervous system.
+						</div>
+					</li>
+				</ol>
+				<hr>
+				<p>Atypical celiac disease is often difficult to diagnose, as it presents symptoms that are atypical, nonspecific, and unrelated to digestive disorders, making diagnosis difficult. The diagnosis process may involve a series of blood tests to detect celiac antibodies, as well as an endoscopic examination or small bowel biopsy to check for damage to the intestinal lining.</p>
+				<p class="mb-0">It is important for you who <span class="fw-bold">have unusual or varying symptoms of celiac</span> to talk to your doctor. Prompt diagnosis and appropriate management with a gluten-free diet as in other types of celiac can help reduce symptoms and improve the quality of life for people who have atypical types of celiac disease. Even if the symptoms are not related to digestion, avoiding gluten completely is important for controlling the autoimmune response and preventing damage to body tissue. Some foods that contain gluten protein include <span class="fw-bold">grains</span>, <span class="fw-bold">wheat</span>, <span class="fw-bold">barley</span>, <span class="fw-bold">spelt</span>, <span class="fw-bold">kamut</span>, and <span class="fw-bold">rye</span>.</p>
+			</div>
+		</div>
+	
+		<div class="col-md-4 mb-3 mx-md-auto">
+			<figure class="figure">
+				<img src="{{url_for('static', filename='img/atypical.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Atypical Celiac Symptoms">
+				<figcaption class="figure-caption text-center">Atypical Celiac Symptoms</figcaption>
+			</figure>
+		</div>
+	</div>
+<div>
+{% endif %}
+	
+
+
+
+
+{% if result == 'Silent' %}
+<div>
+	<div class="alert alert-warning">
+		<div class="d-flex align-items-center" role="alert">
+			<svg width="26" height="26" fill="currentColor" class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+			<h3 class="alert-heading fw-bold mb-0">Silent Celiac</h3>
+		</div>
+		<hr>
+		<p class="mb-0">Oops! you have been detected with celiac disease with the silent type 😥</p>
+	</div>
+	
+	<!-- - Silent merujuk pada hasil tes darah yang menunjukkan adanya antibodi yang tidak normal untuk penyakit celiac, serta terjadi kerusakan pada villi usus halus, namun penderita tidak menunjukkan gejala penyakit celiac meskipun masih mengonsumsi makanan yang mengandung gluten. -->
+	
+	<div class="row">
+		<div class="col-xl-8 mb-3 mb-sm-0">
+			<div class="alert alert-warning" role="alert">
+				<p>Silent Celiac Disease is a form of celiac disease in which patients have damage to the lining of the small intestine associated with celiac disease, but they do not show obvious clinical symptoms. In this case, no obvious digestive symptoms or signs of illness are felt by the patient. However, even if there are no visible symptoms, damage to the small intestine can still occur if the patient continues to consume gluten. Here are some further things that patients with Silent Celiac type really need to pay attention to,</p>
+				
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Small Intestine Damage</div>
+							Even if you with silent celiac disease do not experience symptoms, damage to the lining of the small intestine still occurs. Gluten causes an autoimmune reaction that damages the intestinal lining, inhibiting the body's absorption of necessary nutrients.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">No Digestive Symptoms</div>
+							You may have the silent type of celiac disease, but not experience digestive symptoms such as diarrhea, bloating, or weight loss. Because there are no visible symptoms, the disease is often difficult to diagnose and can progress without proper management.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Diagnosis Through Blood Tests and Intestinal Biopsy</div>
+							Diagnosis of silent celiac disease usually involves blood tests to detect celiac antibodies, such as anti-tTG IgA (anti-tissue Transglutaminase Immunoglobulin A) and anti-EMA IgA (anti-Endomysial Antibodies Immunoglobulin A). If your blood test results are positive, a small intestine biopsy is usually necessary to confirm the diagnosis by looking at the level of direct damage to the intestinal tissue.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Risk of Long-Term Complications</div>
+							Even if you with silent type celiac disease do not experience symptoms, damage to the small intestine can cause the risk of long-term complications such as osteoporosis, anemia, infertility and miscarriage, lactose intolerance, nervous system disorders, and even an increased risk of small intestine cancer.
+						</div>
+					</li>
+					<li class="list-group-item bg-warning-subtle border-warning text-warning-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Management with a Gluten-Free Diet</div>
+							Management of silent type celiac disease involves a lifelong gluten-free diet. By completely avoiding the gluten contained, damage to the small intestine can be stopped, speeding up the recovery of the small intestine, and also the risk of long-term complications can be minimized.
+						</div>
+					</li>
+				</ol>
+				<hr>
+				<p class="mb-0">It's important to remember that even if you don't feel sick, silent celiac disease requires serious management with a gluten-free diet. You should still avoid consuming foods that contain <span class="fw-bold">grains</span>, <span class="fw-bold">wheat</span>, <span class="fw-bold">barley</span>, <span class="fw-bold">spelt</span>, <span class="fw-bold">kamut</span>, and <span class="fw-bold">rye</span>. Consultation with a doctor and nutritionist can help you who have silent celiac disease understand and properly manage the celiac condition.</p>
+			</div>
+		</div>
+	
+		<div class="col-md-4 mb-3 mx-md-auto">
+			<figure class="figure">
+				<img src="{{url_for('static', filename='img/silent.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Silent Celiac">
+				<figcaption class="figure-caption text-center">Silent Celiac</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+
+
+
+{% if result == 'Latent' %}
+<div>
+	<div class="alert alert-secondary">
+		<div class="d-flex align-items-center" role="alert">
+			<svg width="26" height="26" fill="currentColor" class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+			<h3 class="alert-heading fw-bold mb-0">Latent Celiac</h3>
+		</div>
+		<hr>
+		<p class="mb-0">Oops! you have been detected with celiac disease with the latent type 😓</p>
+	</div>
+	
+	<!-- - Latent merujuk pada hasil tes darah yang menunjukkan adanya antibodi yang tidak normal untuk penyakit celiac, tetapi usus halusnya masih normal dan tidak menunjukkan adanya gejala penyakit celiac. Individu dengan tipe ini berisiko tinggi untuk mengembangkan penyakit celiac di masa depan. -->
+	
+	<div class="row">
+		<div class="col-xl-8 mb-3 mb-sm-0">
+			<div class="alert alert-secondary" role="alert">
+				<p>Latent Celiac Disease is a condition in which you have the genetic risk factors and antibodies associated with celiac disease, but are not currently showing clinical symptoms. Even though you have latent celiac disease you may feel well and not experience symptoms, you still have the potential to develop celiac disease in the future. The following are several things that need further attention regarding the Latent Celiac type,</p>
+				
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+	
+							<!-- https://www.ncbi.nlm.nih.gov/books/NBK1727 -->
+							<!-- https://www.sciencedirect.com/topics/nursing-and-health-professions/hla-dq2-antigen -->
+							
+							<div class="fw-bold">Genetic Risk Factors</div>
+							Patients with Latent Celiac Disease have genetic risk factors that predispose them to celiac disease. This means they have inherited certain genes associated with celiac disease, even though symptoms have not yet appeared. The majority of people with celiac disease, over 90%, show at least one copy of HLA-DQ2 (Human Leukocyte Antigen DQ2), referred to as DQ2-positive, and most of the remainder show at least one copy of the HLA-DQ8 (Human Leukocyte Antigen DQ8), referred to as DQ8-positive.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Celiac Antibodies</div>
+							Blood tests in patients with latent celiac disease may reveal the presence of celiac disease-related antibodies, such as anti-tTG IgA (anti-tissue Transglutaminase Immunoglobulin A) and anti-EMA IgA (anti-Endomysial Antibodies Immunoglobulin A). The presence of these antibodies indicates that the immune system is responding abnormally to gluten, even if symptoms have not yet appeared.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Absence of Clinical Symptoms</div>
+							One of the main characteristics of latent celiac disease is the absence of clinical symptoms. Even though there is an autoimmune reaction to gluten in the body, you may not experience digestive symptoms or other health problems that could be clinically identified as celiac disease.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Early Diagnosis</div>
+							Latent celiac disease is often diagnosed at an early stage, perhaps after blood test results show the presence of celiac antibodies. Although you may feel healthy at the moment, regular monitoring and consultation with a doctor is important because you are at risk of developing active celiac disease in the future.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Potential for Development of Active Celiac Disease</div>
+							Even though you have latent celiac disease you may not have symptoms now, you still have the potential to develop active celiac disease later in life, especially if you continue to consume gluten. Gluten is a protein that is found in many grains, wheat, barley, spelled, kamut, and rye. Therefore, it is important to understand these risks and consider adopting a gluten-free diet if advised by a doctor or nutritionist.
+						</div>
+					</li>
+				</ol>
+				<hr>
+				<p class="mb-0">It is important to note that latent celiac disease requires regular monitoring by a doctor or nutritionist. They can guide you on what precautions to take and provide advice on potential future management of celiac disease.</p>
+			</div>
+		</div>
+	
+		<div class="col-md-4 mb-3 mx-md-auto">
+			<figure class="figure">
+				<img src="{{url_for('static', filename='img/latent.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Latent Celiac">
+				<figcaption class="figure-caption text-center">Latent Celiac</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+
+
+
+{% if result == 'Potential' %}
+<div>
+	<div class="alert alert-secondary">
+		<div class="d-flex align-items-center" role="alert">
+			<svg width="26" height="26" fill="currentColor" class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+			<h3 class="alert-heading fw-bold mb-0">Potential Celiac</h3>
+		</div>
+		<hr>
+		<p class="mb-0">Oops! you have been detected with celiac disease with the potential type 😓</p>
+	</div>
+	
+	<!-- - Potential merujuk pada individu dengan faktor risiko dan reaktivitas imun terhadap gluten, tetapi tanpa gejala atau kerusakan usus halus, juga tidak memiliki tanda-tanda gejala celiac. Perlu pemantauan lebih lanjut karena berisiko celiac berkembang di masa depan. -->
+	
+	<div class="row">
+		<div class="col-xl-8 mb-3 mb-sm-0">
+			<div class="alert alert-secondary" role="alert">
+				<p>Potential Celiac Disease refers to the condition in which you have genetic risk factors for celiac disease, but have not shown symptoms or signs of the disease at this time. You may have inherited the gene associated with celiac disease, but have not experienced an autoimmune reaction to gluten sufficient to cause damage to the intestinal lining or produce clinical symptoms. Here are some important things to note about the Celiac Potential type,</p>
+				
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Genetic Risk Factors</div>
+							Those of you who have potential celiac disease have genetic risk factors that make you more susceptible to celiac disease than the general population. You may have a family member suffering from celiac disease or certain genetic risk factors in Human Leukocyte Antigens HLA-DQ2 and HLA-DQ8 which play an important role in the genesis of developing celiac disease.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Genetic Testing and Blood Testing</div>
+							Diagnosis of potential celiac disease often involves blood testing to detect celiac antibodies (such as anti-tTG IgA (anti-tissue Transglutaminase Immunoglobulin A) and anti-EMA IgA (anti-Endomysial Antibodies Immunoglobulin A)) and genetic testing (HLA-DQ2 and HLA-DQ8) to identify genetic risk factors associated with celiac disease. The combination of these test results can indicate that you may have the potential to develop celiac disease in the future.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">No Clinical Symptoms</div>
+							One of the characteristic features of potential celiac disease is the absence of obvious clinical symptoms. Even if you have genetic risk factors, you may not experience digestive symptoms or other signs of celiac disease. This can make diagnosis difficult, as there are no visible symptoms.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Risk of Developing Celiac Disease</div>
+							Patients with potential celiac disease have a higher risk of developing active celiac disease in the future if they are exposed to sufficient amounts of gluten. Therefore, it is important for you to understand these risks and monitor any symptoms or health changes that may appear in the future.
+						</div>
+					</li>
+					<li class="list-group-item bg-secondary-subtle border-secondary text-secondary-emphasis d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Management and Prevention</div>
+							Although patients may not require a gluten-free diet at this time, those with potential celiac disease are advised to have regular monitoring with a doctor or nutritionist. If you experience symptoms or signs of celiac disease in the future, management options include adopting a gluten-free diet to prevent further damage to the intestines and reduce celiac symptoms such as diarrhea, nausea, constipation, bloating and abdominal pain. There are several foods that you can avoid that contain gluten, such as grains, wheat, barley, spelled, kamut, and rye.
+						</div>
+					</li>
+				</ol>
+				<hr>
+				<p class="mb-0">It is important to note that if you have potential celiac disease you may have genetic differences that make you susceptible to the disease, but over time, with enough gluten exposure, you may actually develop active celiac disease. Therefore, regular medical monitoring and consultation is essential for potential management of celiac disease.</p>
+			</div>
+		</div>
+	
+		<div class="col-md-4 mb-3 mx-md-auto">
+			<figure class="figure">
+				<img src="{{url_for('static', filename='img/potential.png')}}" type="image/png" class="figure-img img-fluid rounded" alt="Potential Celiac">
+				<figcaption class="figure-caption text-center">Potential Celiac</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
