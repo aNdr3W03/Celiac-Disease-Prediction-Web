@@ -9,11 +9,11 @@ WORKDIR /app
 RUN useradd -m myuser
 USER myuser
 
+ENV PATH="$PATH:/home/myuser/.local/bin"
+
 # Installing Python packages through requirements.txt file
 COPY --chown=myuser:myuser requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-
-# ENV PATH="$PATH:/etc/profile"
 
 # Copy the model's directory and server.py files
 ADD ./model ./model
