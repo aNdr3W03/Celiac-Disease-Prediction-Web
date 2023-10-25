@@ -3,7 +3,7 @@ FROM python:3.10
 
 RUN pip install --upgrade pip
 
-RUN adduser -D myuser
+RUN adduser --disabled-login myuser
 USER myuser
 
 # Set our working directory as app
@@ -20,4 +20,4 @@ ADD app.py app.py
 # Exposing port 5000 from the container
 EXPOSE 5000
 # Starting the Python application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "server:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
