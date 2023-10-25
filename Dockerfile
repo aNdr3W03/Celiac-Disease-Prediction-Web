@@ -11,7 +11,7 @@ USER myuser
 
 # Installing Python packages through requirements.txt file
 COPY --chown=myuser:myuser requirements.txt requirements.txt
-RUN pip install --user -r requirements.txt
+RUN pip install -r requirements.txt
 
 # ENV PATH="$PATH:/etc/profile"
 
