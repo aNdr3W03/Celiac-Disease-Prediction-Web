@@ -8,18 +8,18 @@ Usage:
 """
 import os
 import numpy as np
-# import tensorflow as tf
+import tensorflow as tf
 from flask import Flask, render_template, request
 from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 app = Flask(__name__)
-model = load_model('model/model_smoteenn.h5')
-# model.compile(
-# 	optimizer=tf.optimizers.Adam(learning_rate=0.001),
-# 	loss='binary_crossentropy',
-# 	metrics=['accuracy']
-# )
+model = load_model('model/model_smoteenn.h5', compile=False)
+model.compile(
+	optimizer=tf.optimizers.Adam(learning_rate=0.001),
+	loss='binary_crossentropy',
+	metrics=['accuracy']
+)
 
 @app.route('/')
 def index():
