@@ -11,7 +11,9 @@ USER myuser
 
 # Installing Python packages through requirements.txt file
 COPY --chown=myuser:myuser requirements.txt requirements.txt
-RUN pip install --myuser -r requirements.txt
+RUN pip install --user -r requirements.txt
+
+# ENV PATH="$PATH:/etc/profile"
 
 # Copy the model's directory and server.py files
 ADD ./model ./model
