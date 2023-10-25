@@ -3,11 +3,11 @@ FROM python:3.10
 
 RUN pip install --upgrade pip
 
-RUN adduser --disabled-login myuser
-USER myuser
-
 # Set our working directory as app
 WORKDIR /app
+
+RUN useradd -m app
+USER myuser
 
 # Installing Python packages through requirements.txt file
 COPY --chown=myuser:myuser requirements.txt requirements.txt
