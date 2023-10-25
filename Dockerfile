@@ -6,7 +6,7 @@ RUN pip install --upgrade pip
 # Set our working directory as app
 WORKDIR /app
 
-RUN useradd -m app
+RUN useradd -m myuser
 USER myuser
 
 # Installing Python packages through requirements.txt file
